@@ -2,9 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 7%;
+  margin: 180px;;
 }
 
 #canvas {
+  cursor: none;
   background: black;
 }

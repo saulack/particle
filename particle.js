@@ -1,23 +1,42 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
 
   window.canvas = document.getElementById('canvas');
-    window.ctx = canvas.getContext('2d');
+  window.ctx = canvas.getContext('2d');
 
-    const circleArr = [];
-    for (let i = 0; i < 100; i++) {
-      let dx = Math.random() * 5
-      let dy = Math.random() * 5
-      let x = Math.random() * innerWidth
-      let y = Math.random() * innerHeight
-      let circle = new Circle(x, y, 3, dx, dy)
-      circleArr.push(circle);
-    }
+  window.mouse = {
+    x: null,
+    y: null
+  }
 
-    for (let j = 0; j < circleArr.length; j++) {
-      circleArr[j].draw()
-    }
-    console.log(circleArr);
+  window.addEventListener('mousemove', function(event) {
+    mouse.x = event.x;
+    mouse.y = event.y;
+    window.player = new Circle(mouse.x , mouse.y, 5, mouse.x, mouse.y)
+    console.log(mouse) ;
+  })
 
+
+  var circleArr = [];
+  for (let i = 0; i < 200; i++) {
+    let dx = Math.random() * 5
+    let x = Math.random() * innerWidth
+    let dy = Math.random() * 5
+    let y = Math.random() * innerHeight
+    let circle = new Circle(999, 1, 3, dx, dy)
+    circleArr.push(circle);
+  }
+
+
+  function animate()  {
+    requestAnimationFrame(animate)
+    ctx.clearRect(0, 0, innerWidth, innerHeight)
+    player.player()
+    for (let i = 0; i < circleArr.length; i++) {
+      circleArr[i].update()
+    };
+  };
+
+    animate();
 });
 
 
@@ -30,7 +49,6 @@ class Circle  {
     this.dy = dy
 
     this.draw = this.draw.bind(this);
-    this.animate = this.animate.bind(this);
   }
 
   draw() {
@@ -39,18 +57,38 @@ class Circle  {
       ctx.strokeStyle = 'blue';
       ctx.fillStyle = 'white';
       ctx.stroke();
+      ctx.fill()
 
   }
 
+  drawPlayer() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    ctx.strokeStyle = 'red';
+    ctx.fillStyle = 'blue';
+    ctx.stroke();
+    ctx.fill()
 
-  animate() {
-    requestAnimationFrame(animate)
-    ctx.clearRect(0, 0, innerWidth, innerHeight)
+  }
+
+  player() {
+    this.x = window.mouse.x
+    this.y = window.mouse.y
+    this.drawPlayer()
+  }
+
+  update(){
+
+    if ( this.x < 0 && this.y > 600) {
+      this.x = 999;
+      this.y = Math.random() * Math.random(600);
+    }
+    this.x += -this.dx
+    this.y += this.dy
     this.draw()
 
-      x -= dx;
-      y += dy;
   }
+
 }
 
 
@@ -66,21 +104,6 @@ class Circle  {
 //
 // }
 //
-//
-// function animate() {
-//   requestAnimationFrame(animate)
-//   ctx.clearRect(0, 0, innerWidth, innerHeight)
-//
-//
-//     ctx.beginPath();
-//     ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-//     ctx.strokeStyle = 'blue';
-//     ctx.fillStyle = 'white';
-//     ctx.stroke();
-//
-//     x -= dx;
-//     y += dy;
-//   }
 //
 //
 // animate();
