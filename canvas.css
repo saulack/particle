@@ -11,10 +11,24 @@
   background: rgba(0, 0, 0, 0.9);
   z-index: 1;
   border-radius: 5px;
+  border: 1px solid rgb(47, 11, 89.8);
 }
 
 body {
-  background-image: url('./assets/bkrnd.jpg');
+  background-image: url('./assets/bkrnd2.jpg');
   object-fit: cover;
+
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  padding: 5px;
+  color: rgba(113, 86, 128.2)
+  margin: 10px;
+  max-width: 60px;
 
 }

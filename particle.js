@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let x = Math.random() * innerWidth
     let dy = Math.random() * 5
     let y = Math.random() * innerHeight
-    let circle = new Circle(999, 1, 3, dx, dy)
+    let circle = new Circle(999, 1, 2, dx, dy)
     circleArr.push(circle);
   }
 
@@ -74,8 +74,8 @@ class Circle  {
   drawPlayer() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    ctx.strokeStyle = 'rgb(13, 5, 162)';
-    ctx.fillStyle = 'rgb(0, 255, 247)';
+    ctx.strokeStyle = 'red';
+    ctx.fillStyle = 'red';
     ctx.stroke();
     ctx.fill()
 
@@ -91,8 +91,8 @@ class Circle  {
   update(){
 
     if ( this.x < 0 && this.y > 600) {
-      this.x = 1000;
-      this.y = Math.random();
+      this.x = Math.random(900) * 1000;
+      this.y = Math.random() * 600;
     }
     this.x += -this.dx
     this.y += this.dy
