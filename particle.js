@@ -8,10 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
     y: null
   }
 
-  window.addEventListener('mousemove', function(event) {
-    mouse.x = event.x;
-    mouse.y = event.y;
-    window.player = new Circle(mouse.x , mouse.y, 5, mouse.x, mouse.y)
+  canvas.addEventListener('mousemove', function(event) {
+
+    let trailPos = [];
+    mouse.x = event.x - canvas.offsetLeft;
+    mouse.y = event.y - canvas.offsetTop;
+    // if (trailPos.length > 10) {
+    //   trailPos.shift
+    //   trailpos.push([mouse.x, mouse.y])
+    // } else {
+    //   trailpos.push([mouse.x, mouse.y])
+    //
+    // }
+
+    window.player = new Circle(mouse.x , mouse.y, 2, mouse.x, mouse.y)
     console.log(mouse) ;
   })
 
@@ -64,12 +74,13 @@ class Circle  {
   drawPlayer() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    ctx.strokeStyle = 'red';
-    ctx.fillStyle = 'blue';
+    ctx.strokeStyle = 'rgb(13, 5, 162)';
+    ctx.fillStyle = 'rgb(0, 255, 247)';
     ctx.stroke();
     ctx.fill()
 
   }
+
 
   player() {
     this.x = window.mouse.x
@@ -80,8 +91,8 @@ class Circle  {
   update(){
 
     if ( this.x < 0 && this.y > 600) {
-      this.x = 999;
-      this.y = Math.random() * Math.random(600);
+      this.x = 1000;
+      this.y = Math.random();
     }
     this.x += -this.dx
     this.y += this.dy
@@ -89,22 +100,5 @@ class Circle  {
 
   }
 
+
 }
-
-
-
-//
-//     let dx = Math.random() * 5
-//     let dy = Math.random() * 5
-//     let radius = 20
-//     let x = 900;
-//     let y = 1;
-//
-// function draw() {
-//
-// }
-//
-//
-//
-// animate();
-// })

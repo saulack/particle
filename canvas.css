@@ -2,10 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 180px;;
+  margin: 7%;;
 }
 
 #canvas {
+  position: relative;
   cursor: none;
-  background: black;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+body {
+  background-image: url('./assets/bkrnd.jpg');
+  object-fit: cover;
+
 }
