@@ -1,3 +1,10 @@
+.cv-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 7%;
+}
+
 #canvas {
-  color: black;
+  background: black;
 }
