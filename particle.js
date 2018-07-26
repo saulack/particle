@@ -13,26 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let trailPos = [];
     mouse.x = event.x - canvas.offsetLeft;
     mouse.y = event.y - canvas.offsetTop;
-    // if (trailPos.length > 10) {
-    //   trailPos.shift
-    //   trailpos.push([mouse.x, mouse.y])
-    // } else {
-    //   trailpos.push([mouse.x, mouse.y])
-    //
-    // }
 
-    window.player = new Circle(mouse.x , mouse.y, 2, mouse.x, mouse.y)
-    console.log(mouse) ;
+
+    window.player = new Circle(mouse.x, mouse.y, 2, mouse.x, mouse.y)
   })
+
 
 
   var circleArr = [];
   for (let i = 0; i < 200; i++) {
-    let dx = Math.random() * 5
+    let dx = Math.random() * 3
     let x = Math.random() * innerWidth
-    let dy = Math.random() * 5
+    let dy = Math.random() * 3
     let y = Math.random() * innerHeight
-    let circle = new Circle(999, 1, 2, dx, dy)
+    let circle = new Circle(999, 1, 3, dx, dy)
     circleArr.push(circle);
   }
 
@@ -40,9 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function animate()  {
     requestAnimationFrame(animate)
     ctx.clearRect(0, 0, innerWidth, innerHeight)
-    player.player()
+    player.player();
     for (let i = 0; i < circleArr.length; i++) {
-      circleArr[i].update()
+      circleArr[i].update(circleArr)
     };
   };
 
@@ -57,9 +51,13 @@ class Circle  {
     this.radius = radius;
     this.dx = dx
     this.dy = dy
+    this.lives = 3;
 
     this.draw = this.draw.bind(this);
+    this.drawTrail = this.drawTrail.bind(this);
+    this.getDistance = this.getDistance.bind(this);
   }
+
 
   draw() {
       ctx.beginPath();
@@ -69,6 +67,13 @@ class Circle  {
       ctx.stroke();
       ctx.fill()
 
+  }
+
+
+  getDistance(x1, y1, x2, y2) {
+    let xDistance = x1 - x2
+    let yDistance = y1 - y2
+    return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2))
   }
 
   drawPlayer() {
@@ -81,24 +86,57 @@ class Circle  {
 
   }
 
+  drawTrail(trail) {
+
+    trail.push([this.x, this.y])
+    this.x = trail[i][0]
+    this.y = trail[i][1]
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    ctx.strokeStyle = 'red';
+    ctx.fillStyle = 'red';
+    ctx.stroke();
+    ctx.fill()
+
+
+  }
 
   player() {
     this.x = window.mouse.x
     this.y = window.mouse.y
-    this.drawPlayer()
+
+    const trailLength = 10;
+    const trail = [];
+    if (trail.length < trailLength) {
+      trail.push([this.x, this.y])
+    } else
+      trail.shift();
+      trail.push([this.x, this.y])
+
+    console.log(trail);
+
+
+
+    this.drawPlayer();
+    this.drawTrail(trail)
   }
 
-  update(){
+  update(particles){
 
     if ( this.x < 0 && this.y > 600) {
-      this.x = Math.random(900) * 1000;
-      this.y = Math.random() * 600;
+      this.x = Math.random(1000) * 1200;
+      this.y = Math.random() * 800;
     }
     this.x += -this.dx
     this.y += this.dy
-    this.draw()
+    this.draw();
 
+
+    for (let i = 0; i < particles.length; i++ ) {
+      if (particles[i].getDistance(this.x, this.y, mouse.x, mouse.y) - this.radius * 2 < 0) {
+        console.log('COLLISION DETECTED');
+      }
+    }
   }
-
 
 }

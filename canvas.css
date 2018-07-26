@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 7%;;
+  margin: 7%;
 }
 
 #canvas {
@@ -23,12 +23,13 @@ body {
 .links {
   display: flex;
   justify-content: center;
-}
-
-img {
+  font-size: 80px;
   padding: 5px;
-  color: rgba(113, 86, 128.2)
+  color: black;
   margin: 10px;
   max-width: 60px;
+}
+
+i {
 
 }
