@@ -2,7 +2,7 @@ div {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 7%;
+  margin: 5%;
 }
 
 #canvas {
@@ -29,6 +29,6 @@ body {
 
 i {
   font-size: 40px;
-  margin: 10px;
+  margin: 5px;
   color: rgb(122, 119, 139);
 }
