@@ -28,7 +28,36 @@ body {
 }
 
 i {
+  align-self: flex-end;
   font-size: 40px;
   margin: 5px;
-  color: rgb(122, 119, 139);
+  color: white;
+}
+
+ul {
+  margin-top: 100px;
+  align-self:flex-start;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.68);
+  list-style: none;
+  color: white;
+  justify-content: flex-start;
+  border-radius: 5px;
+  border: 1px solid rgb(47, 11, 89.8);
+}
+
+li {
+  margin: 20px;
+}
+
+.panel {
+  margin: 20px;
+}
+
+h3 {
+  font-family: 'Faster One', cursive;
+  /* font-family: 'Bungee Hairline', cursive; */
+  font-size: 50px;
+
 }
