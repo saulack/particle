@@ -25,13 +25,13 @@ body {
   font-size: 80px;
   padding: 5px;
   margin: 10px;
+  color: grey;
 }
 
 i {
   align-self: flex-end;
   font-size: 40px;
   margin: 5px;
-  color: white;
 }
 
 ul {
@@ -39,12 +39,14 @@ ul {
   align-self:flex-start;
   display: flex;
   flex-direction: column;
-  background: rgba(0, 0, 0, 0.68);
+  background: rgba(0, 0, 0, 0.9);
   list-style: none;
   color: white;
   justify-content: flex-start;
   border-radius: 5px;
   border: 1px solid rgb(47, 11, 89.8);
+  font-family: 'Bungee Hairline', cursive;
+
 }
 
 li {
@@ -56,8 +58,9 @@ li {
 }
 
 h3 {
-  font-family: 'Faster One', cursive;
-  /* font-family: 'Bungee Hairline', cursive; */
+  /* font-family: 'Faster One', cursive; */
+  font-family: 'Bungee Hairline', cursive;
   font-size: 50px;
+  margin 0;
 
 }
