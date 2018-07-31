@@ -16,7 +16,7 @@ div {
 
 body {
   background-image: url('./assets/bkrnd2.jpg');
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .link {
@@ -58,9 +58,14 @@ li {
 }
 
 h3 {
-  /* font-family: 'Faster One', cursive; */
   font-family: 'Bungee Hairline', cursive;
   font-size: 50px;
   margin 0;
+}
 
+.logo {
+  align-self: flex-start;
+  margin: 10px;
+  max-width: 50px;
+  filter: invert(100%);
 }
